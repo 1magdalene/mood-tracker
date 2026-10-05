@@ -1,37 +1,34 @@
 import { Pressable, Text, StyleSheet } from 'react-native';
 
-export default function MoodButton({ emoji, label, onPress }) {
+export default function MoodButton({ emoji, label, color, onPress }) {
   return (
     <Pressable
       onPress={onPress}
       style={({ pressed }) => [styles.button, pressed && styles.pressed]}
     >
-      <Text style={styles.emoji}>{emoji}</Text>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.circle, { backgroundColor: color }]}>{emoji}</Text>
+      <Text style={[styles.label, { color }]}>{label.toUpperCase()}</Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  button: {
-    width: '47%',
-    backgroundColor: '#1e1038',
-    borderWidth: 1,
-    borderColor: '#3b2270',
-    borderRadius: 24,
-    paddingVertical: 22,
-    alignItems: 'center',
-    marginBottom: 14,
+  button: { flex: 1, alignItems: 'center' },
+  pressed: { transform: [{ scale: 0.92 }], opacity: 0.8 },
+  circle: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    overflow: 'hidden',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    lineHeight: 70,
+    fontSize: 34,
   },
-  pressed: {
-    backgroundColor: '#3b2270',
-    transform: [{ scale: 0.96 }],
-  },
-  emoji: { fontSize: 48 },
   label: {
-    fontFamily: 'Poppins_600SemiBold',
-    fontSize: 15,
-    color: '#e9d5ff',
+    fontFamily: 'Nunito_800ExtraBold',
+    fontSize: 12,
+    letterSpacing: 0.6,
     marginTop: 8,
   },
 });
